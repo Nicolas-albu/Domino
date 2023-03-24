@@ -2,9 +2,9 @@ package src;
 
 import java.util.Scanner;
 
-import ifal.Pontuacao;
-import ifal.Jogador;
-import ifal.Peca;
+import pieces.Piece;
+import system.Jogador;
+import system.Pontuacao;
 
 public class App {
     public static void main(String[] args) {
@@ -13,7 +13,7 @@ public class App {
 
         Pontuacao createPunctuation = new Pontuacao();
         Jogador[] players = new Jogador[3];
-        Peca Piece = new Peca();
+        Piece Piece = new Piece();
         
         System.out.print("Nome do jogador 1: ");
         players[0] = new Jogador(read.nextLine(), 0, false);
