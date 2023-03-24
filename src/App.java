@@ -1,10 +1,12 @@
 package src;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.List;
 
-import pieces.Piece;
-import system.Jogador;
+import pieces.NormalPiece;
 import system.Pontuacao;
+import system.Jogador;
 
 public class App {
     public static void main(String[] args) {
@@ -12,21 +14,22 @@ public class App {
         int[][] ranking = new int[3][2];
 
         Pontuacao createPunctuation = new Pontuacao();
-        Jogador[] players = new Jogador[3];
-        Piece Piece = new Piece();
+         
+        List<Jogador> players = new ArrayList<>();
+        NormalPiece normalPiece = new NormalPiece();
         
         System.out.print("Nome do jogador 1: ");
-        players[0] = new Jogador(read.nextLine(), 0, false);
+        players.add(new Jogador(read.nextLine(), 0, false));
 
         System.out.print("Nome do jogador 2: ");
-        players[1] = new Jogador(read.nextLine(), 0, false);
+        players.add(new Jogador(read.nextLine(), 0, false));
 
-        players[2] = new Jogador("Computador", 0, false);
+        players.add(new Jogador("Computador", 0, false));
 
         for(int gameRound = 0; gameRound < 3; gameRound++){
-            players[0].piece = Piece.createPeca();
-            players[1].piece = Piece.createPeca();
-            players[2].piece = Piece.createPeca();
+            players.get(0).piece = normalPiece.generatePiece();
+            players.get(1).piece = normalPiece.generatePiece();
+            players.get(2).piece = normalPiece.generatePiece();
             
             int[] arrayPunctuation = createPunctuation.evaluatesScores(createPunctuation.punctuation(players[0].piece), createPunctuation.punctuation(players[1].piece), createPunctuation.punctuation(players[2].piece));
 
@@ -37,8 +40,8 @@ public class App {
             System.out.println("\nRODADA " + (gameRound + 1) + ":");
 
             for(int player = 0; player < players.length; player++){
-                System.out.println(players[player].getName() + ": " + Piece.createVisuatizationPiece(players[player].piece));
-                System.out.println("Avaliação da pedra " + Piece.createVisuatizationPiece(players[player].piece) + ": " + createPunctuation.punctuation(players[player].piece) + "\n");
+                System.out.println(players[player].getName() + ": " + normalPiece.createVisuatizationpiece(players[player].piece));
+                System.out.println("Avaliação da pedra " + normalPiece.createVisuatizationpiece(players[player].piece) + ": " + createPunctuation.punctuation(players[player].piece) + "\n");
             }
     
             System.out.println("Nesta rodada:");
